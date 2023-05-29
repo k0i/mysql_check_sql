@@ -26,6 +26,14 @@ You must first `SET GLOBAL innodb_status_output_locks=ON`, which requires `SUPER
 | Next-key lock         |                  | ✓         | Locks a single record and the gap before it |
 | Insert intention lock | INSERT_INTENTION |           | Allows INSERT into gasp                     |
 
+# VARIABLE regarding locks
+
+| Name                     | Description                                                                                                       | Default               |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | --------------------- |
+| lock_wait_timeout        | When you request a flush, metadata, or backup lock, the attempt to get the lock will time out after this seconds. | 365 Days(31,536,000s) |
+| innodb_lock_wait_timeout | The length of time in seconds an InnoDB transaction waits for a row lock before giving up.                        | 50s                   |
+| wait_timeout             | The number of seconds the server waits for activity on a noninteractive connection before closing it.             | 8 hours(28800s)       |
+
 # data_locks
 
 | Column Name           | Description                                                                                                                                                                                                                                                                                                                             |
