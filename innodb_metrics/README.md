@@ -11,6 +11,9 @@ TODO: https://engineering.linecorp.com/ja/blog/mysql-research-performance-schema
 > I no longer consider `SHOW ENGINE INNODB STATUS` authoritative.  
 > For example, with respect to active transactions, `BEGIN; SELECT col FROM tbl;` does not show as active in `SHOW ENGINE INNODB STATUS`,  
 > but it correctly shows as active in `innodb.trx_active_transactions`.
+> The transaction list only includes one active transaction (the one for the UPDATE statement).  
+> In MySQL 5.7 and later, read-only non-locking transactions are not included in the InnoDB monitor transaction list.  
+> For this reason, it is better to use the INNODB_TRX view , if you need to include all active transactions.
 
 The InnoDB monitor report is created with the `SHOW ENGINE INNODB STATUS` statement.  
 Alternatively, it can be written to the stderr (usually redirected to the error log) every 15 seconds by enabling the `innodb_status_output` option.  
